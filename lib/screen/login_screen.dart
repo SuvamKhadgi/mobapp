@@ -1,8 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:mobapp/screen/dashboard_view.dart';
 import 'package:mobapp/screen/sign_up.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
+
+  void _showSuccessSnackbar(BuildContext context) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(
+        content: Text('login sucessfully !'),
+        backgroundColor: Colors.green,
+        duration: Duration(seconds: 2), // Duration the snackbar stays on screen
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -71,9 +82,11 @@ class LoginScreen extends StatelessWidget {
                   String email = emailController.text;
                   String password = passwordController.text;
                   print('Email: $email, Password: $password');
-                  Navigator.push(
+                  _showSuccessSnackbar(context);
+                  Navigator.pushReplacement(
                     context,
-                    MaterialPageRoute(builder: (context) => const SignUp()),
+                    MaterialPageRoute(
+                        builder: (context) => const DashboardView()),
                   );
                 },
                 child: const Text('Login'),

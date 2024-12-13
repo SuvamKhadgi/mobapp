@@ -4,6 +4,16 @@ import 'package:mobapp/screen/login_screen.dart';
 class SignUp extends StatelessWidget {
   const SignUp({super.key});
 
+  void _showSuccessSnackbar(BuildContext context) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(
+        content: Text('Your account has been successfully created!'),
+        backgroundColor: Colors.green,
+        duration: Duration(seconds: 2), // Duration the snackbar stays on screen
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -79,7 +89,9 @@ class SignUp extends StatelessWidget {
               // Sign Up Button
               ElevatedButton(
                 onPressed: () {
-                  // Add signup logic here
+                  _showSuccessSnackbar(context);
+                  Navigator.pushReplacement(context,
+                      MaterialPageRoute(builder: (context) => LoginScreen()));
                 },
                 child: const Text('Sign Up'),
                 style: ElevatedButton.styleFrom(
