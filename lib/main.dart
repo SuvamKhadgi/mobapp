@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:mobapp/splash_screen_view.dart';
+import 'package:mobapp/screen/splash_screen_view.dart';
 
 void main() {
   runApp(const MyApp());

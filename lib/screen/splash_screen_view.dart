@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:mobapp/login_screen.dart';
+import 'package:mobapp/screen/login_screen.dart';
 
 class SplashScreenView extends StatefulWidget {
   const SplashScreenView({super.key});
@@ -27,7 +27,7 @@ class _SplashScreenViewState extends State<SplashScreenView> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      body: Center(child: Image.asset('assets/images/img2.png')),
+      body: Center(child: Image.asset('assets/images/logo.png')),
     );
   }
 }

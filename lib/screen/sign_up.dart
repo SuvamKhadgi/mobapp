@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:mobapp/login_screen.dart';
+import 'package:mobapp/screen/login_screen.dart';
 
 class SignUp extends StatelessWidget {
   const SignUp({super.key});
@@ -29,7 +29,7 @@ class SignUp extends StatelessWidget {
               // Image
               Center(
                 child: Image.asset(
-                  'assets/images/img2.png',
+                  'assets/images/logo.png',
                   width: double.infinity,
                   height: 350,
                   fit: BoxFit.cover,
