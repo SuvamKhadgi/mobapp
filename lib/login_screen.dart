@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mobapp/sign_up.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
@@ -70,9 +71,29 @@ class LoginScreen extends StatelessWidget {
                   String email = emailController.text;
                   String password = passwordController.text;
                   print('Email: $email, Password: $password');
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const SignUp()),
+                  );
                 },
                 child: const Text('Login'),
               ),
+
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const Text("Don't have an account? "),
+                  TextButton(
+                    onPressed: () {
+                      Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(builder: (context) => const SignUp()),
+                      );
+                    },
+                    child: const Text('Sign Up'),
+                  ),
+                ],
+              )
             ],
           ),
         ),
