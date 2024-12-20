@@ -8,9 +8,9 @@ class LoginScreen extends StatelessWidget {
   void _showSuccessSnackbar(BuildContext context) {
     ScaffoldMessenger.of(context).showSnackBar(
       const SnackBar(
-        content: Text('login sucessfully !'),
+        content: Text('Login successfully!'),
         backgroundColor: Colors.green,
-        duration: Duration(seconds: 2), // Duration the snackbar stays on screen
+        duration: Duration(seconds: 2),
       ),
     );
   }
@@ -21,93 +21,153 @@ class LoginScreen extends StatelessWidget {
     final TextEditingController passwordController = TextEditingController();
 
     return Scaffold(
-      appBar: AppBar(
-        title: const Center(
-          child: Text(
-            'LOGIN',
-            style: TextStyle(
-              color: Colors.blue,
-              fontWeight: FontWeight.bold,
-              fontSize: 20,
-            ),
+      body: Container(
+        decoration: const BoxDecoration(
+          gradient: LinearGradient(
+            colors: [
+              Color.fromARGB(255, 149, 202, 246),
+              Colors.lightBlueAccent
+            ],
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
           ),
         ),
-      ),
-      backgroundColor: Colors.white,
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              // Image
-              Image.asset(
-                'assets/images/logo.png',
-                width: 100,
-                height: 350,
-                fit: BoxFit.cover,
-              ),
-              const SizedBox(
-                  height: 16), // Add space between the image and text fields
-
-              // Email Text Field
-              TextField(
-                controller: emailController,
-                decoration: const InputDecoration(
-                  labelText: 'Email',
-                  hintText: 'Enter your email',
-                  border: OutlineInputBorder(),
-                  prefixIcon: Icon(Icons.email),
-                ),
-                keyboardType: TextInputType.emailAddress,
-              ),
-              const SizedBox(height: 16), // Add space between fields
-
-              // Password Text Field
-              TextField(
-                controller: passwordController,
-                decoration: const InputDecoration(
-                  labelText: 'Password',
-                  hintText: 'Enter your password',
-                  border: OutlineInputBorder(),
-                  prefixIcon: Icon(Icons.lock),
-                ),
-                obscureText: true,
-              ),
-              const SizedBox(height: 20), // Add space before the button
-
-              // Login Button
-              ElevatedButton(
-                onPressed: () {
-                  String email = emailController.text;
-                  String password = passwordController.text;
-                  print('Email: $email, Password: $password');
-                  _showSuccessSnackbar(context);
-                  Navigator.pushReplacement(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => const DashboardView()),
-                  );
-                },
-                child: const Text('Login'),
-              ),
-
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
+        child: Center(
+          child: SingleChildScrollView(
+            child: Padding(
+              padding: const EdgeInsets.all(24.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
-                  const Text("Don't have an account? "),
-                  TextButton(
+                  // Logo
+                  Center(
+                    child: Column(
+                      children: [
+                        Image.asset(
+                          'assets/images/logos.png',
+                          width: 150,
+                          height: 150,
+                          fit: BoxFit.cover,
+                        ),
+                        const SizedBox(height: 10),
+                        const Text(
+                          "Welcome Back!",
+                          style: TextStyle(
+                            fontSize: 24,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white,
+                          ),
+                        ),
+                        const SizedBox(height: 5),
+                        const Text(
+                          "Login to continue",
+                          style: TextStyle(
+                            fontSize: 16,
+                            color: Colors.white70,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  const SizedBox(height: 30),
+
+                  // Email Field
+                  TextField(
+                    controller: emailController,
+                    decoration: InputDecoration(
+                      filled: true,
+                      fillColor: Colors.white,
+                      labelText: 'Email',
+                      hintText: 'Enter your email',
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(30),
+                        borderSide: BorderSide.none,
+                      ),
+                      prefixIcon: const Icon(Icons.email, color: Colors.blue),
+                    ),
+                    keyboardType: TextInputType.emailAddress,
+                  ),
+                  const SizedBox(height: 16),
+
+                  // Password Field
+                  TextField(
+                    controller: passwordController,
+                    decoration: InputDecoration(
+                      filled: true,
+                      fillColor: Colors.white,
+                      labelText: 'Password',
+                      hintText: 'Enter your password',
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(30),
+                        borderSide: BorderSide.none,
+                      ),
+                      prefixIcon: const Icon(Icons.lock, color: Colors.blue),
+                    ),
+                    obscureText: true,
+                  ),
+                  const SizedBox(height: 20),
+
+                  // Login Button
+                  ElevatedButton(
                     onPressed: () {
+                      String email = emailController.text;
+                      String password = passwordController.text;
+                      print('Email: $email, Password: $password');
+                      _showSuccessSnackbar(context);
                       Navigator.pushReplacement(
                         context,
-                        MaterialPageRoute(builder: (context) => const SignUp()),
+                        MaterialPageRoute(
+                          builder: (context) => const DashboardView(),
+                        ),
                       );
                     },
-                    child: const Text('Sign Up'),
+                    style: ElevatedButton.styleFrom(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(30),
+                      ),
+                      padding: const EdgeInsets.symmetric(vertical: 16),
+                      backgroundColor: Colors.white,
+                    ),
+                    child: const Text(
+                      'Login',
+                      style: TextStyle(
+                        color: Colors.blue,
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 20),
+
+                  // Sign Up Option
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      const Text(
+                        "Don't have an account? ",
+                        style: TextStyle(color: Colors.white),
+                      ),
+                      TextButton(
+                        onPressed: () {
+                          Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const SignUp()),
+                          );
+                        },
+                        child: const Text(
+                          'Sign Up',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
                 ],
-              )
-            ],
+              ),
+            ),
           ),
         ),
       ),
